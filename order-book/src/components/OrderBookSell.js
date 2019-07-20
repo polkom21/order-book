@@ -1,32 +1,42 @@
 import React from 'react'
 
-var sellPrices = [26.78, 26.79, 26.85]
-var sellQuantity = [34, 46, 74]
-var sellSum = []
+var orders = [
+    {
+        price: 26.78,
+        quantity: 34,
+    },
+    {
+        price: 26.79,
+        quantity: 46,
+    },
+    {
+        price: 26.85,
+        quantity: 34,
+    }
+]
 
 const OrderBookSell = () => {
-  var table = []
-
-  for (let i = 0; i < sellPrices.length; i++) {
-    sellSum[i] = sellPrices[i] * sellQuantity[i]
-  }
-
-  table.push(<tr><td><b>Prices</b></td> 
-    <td><b>Quantity</b></td> 
-    <td><b>Sum</b></td></tr>)
-
-  for (let i = 0; i < sellPrices.length; i++) {
-    table.push(<tr>
-      <td>{ sellPrices[i] }</td>
-      <td>{ sellQuantity[i] }</td>
-      <td>{ sellSum[i] }</td>
-    </tr>)
-  }
-  
-  return <div>
-    <h4>Sell Offers (ASK)</h4>
-    <table>{ table }</table>
-  </div>
+    return <div>
+        <h4>Sell Offers (ASK)</h4>
+        <table>
+            <thead>
+                <th>
+                    <td><b>Prices</b></td>
+                    <td><b>Quantity</b></td>
+                    <td><b>Sum</b></td>
+                </th>
+            </thead>
+            <tbody>
+                {orders.map(order =>
+                    <tr>
+                        <td>{order.price}</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.price * order.quantity}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    </div>
 }
 
 export default OrderBookSell
